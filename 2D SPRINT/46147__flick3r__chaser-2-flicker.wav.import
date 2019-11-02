@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/46147__flick3r__chaser-2-flicker.wav-c50556875fea54acf65fa4f8b75e4032.sample"
+
+[deps]
+
+source_file="res://46147__flick3r__chaser-2-flicker.wav"
+dest_files=[ "res://.import/46147__flick3r__chaser-2-flicker.wav-c50556875fea54acf65fa4f8b75e4032.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

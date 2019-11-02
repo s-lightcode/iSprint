@@ -1,0 +1,369 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://player2.gd" type="Script" id=2]
+[ext_resource path="res://floor2.gd" type="Script" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends KinematicBody2D
+
+# Declare member variables here. Examples:
+var gravity = 100
+var velocity = Vector2(0,0)
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	move_and_slide(Vector2(0,gravity))
+
+	if Input.is_action_pressed(\"Left2\"):
+		velocity.x = -600
+	elif Input.is_action_pressed(\"Right2\"):
+		velocity.x = 600
+	else:
+		velocity.x = 0
+		
+		
+	if Input.is_action_pressed(\"Up2\"):
+		velocity.y = -480
+	elif Input.is_action_pressed(\"Down2\"):
+		velocity.y  = 400
+	else:
+		velocity.y = 0
+		
+	move_and_slide(velocity)
+	
+	pass
+		 
+
+func _on_Area2D_body_entered(body):
+	print(body)
+	pass # Replace with function body.
+"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 420.28, 331.94 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 139.2, 149.617 )
+
+[sub_resource type="CanvasItemMaterial" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 180.507, 169.449 )
+
+[sub_resource type="CanvasItemMaterial" id=6]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 25.9189, 17.7661 )
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 7.4043, 12.4891 )
+
+[node name="PREDATOR" type="KinematicBody2D" parent="."]
+position = Vector2( 2234.54, 680.094 )
+scale = Vector2( 0.28, 0.28 )
+collision/safe_margin = 0.001
+script = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="PREDATOR"]
+modulate = Color( 1, 0.0941176, 0, 1 )
+self_modulate = Color( 1, 0.0941176, 0, 1 )
+show_behind_parent = true
+position = Vector2( -6931.14, -2282.48 )
+scale = Vector2( 5.07585, 4.78632 )
+texture = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="PREDATOR"]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PREDATOR/Area2D"]
+modulate = Color( 1, 0, 0, 0.164706 )
+self_modulate = Color( 1, 0.890196, 0, 1 )
+show_behind_parent = true
+position = Vector2( -6949.56, -2255.02 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PREDATOR"]
+modulate = Color( 1, 0, 0, 0.164706 )
+self_modulate = Color( 1, 0.890196, 0, 1 )
+show_behind_parent = true
+position = Vector2( -6949.56, -2255.02 )
+shape = SubResource( 3 )
+
+[node name="PREY" type="KinematicBody2D" parent="."]
+modulate = Color( 0, 1, 0.0390625, 1 )
+self_modulate = Color( 0, 1, 0.0392157, 1 )
+show_behind_parent = true
+light_mask = 11
+material = SubResource( 4 )
+use_parent_material = true
+position = Vector2( 2863.23, 699.304 )
+scale = Vector2( 0.28, 0.28 )
+collision/safe_margin = 152.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="PREY"]
+modulate = Color( 0, 1, 0.0392157, 1 )
+self_modulate = Color( 0, 1, 0.368627, 1 )
+show_behind_parent = true
+position = Vector2( -6931.14, -2282.48 )
+scale = Vector2( 5.07585, 4.78632 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PREY"]
+modulate = Color( 1, 0, 0, 0.164706 )
+self_modulate = Color( 1, 0.890196, 0, 1 )
+show_behind_parent = true
+position = Vector2( -6949.56, -2255.02 )
+shape = SubResource( 5 )
+
+[node name="floor2" type="KinematicBody2D" parent="."]
+position = Vector2( -5616.41, -976.657 )
+scale = Vector2( 5.01996, 1.213 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="floor2"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1218.5, 1154.24 )
+scale = Vector2( 0.259234, 0.281124 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor2"]
+position = Vector2( 1218.77, 1154.9 )
+scale = Vector2( 0.331139, 0.647363 )
+shape = SubResource( 7 )
+
+[node name="floor11" type="KinematicBody2D" parent="."]
+position = Vector2( -5458.25, -1200.2 )
+scale = Vector2( 5.01996, 1.213 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="floor11"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1218.5, 1154.24 )
+scale = Vector2( 0.259234, 0.281124 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor11"]
+position = Vector2( 1218.77, 1154.9 )
+scale = Vector2( 0.331139, 0.647363 )
+shape = SubResource( 7 )
+
+[node name="floor13" type="KinematicBody2D" parent="."]
+position = Vector2( -5906.09, -894.355 )
+scale = Vector2( 5.01996, 1.213 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="floor13"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1218.5, 1154.24 )
+scale = Vector2( 0.259234, 0.281124 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor13"]
+position = Vector2( 1218.77, 1154.9 )
+scale = Vector2( 0.331139, 0.647363 )
+shape = SubResource( 7 )
+
+[node name="floor14" type="KinematicBody2D" parent="."]
+position = Vector2( -5144.61, -1270.13 )
+rotation = 0.010472
+scale = Vector2( 5.01996, 1.213 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="floor14"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1218.5, 1154.24 )
+scale = Vector2( 0.259234, 0.281124 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor14"]
+position = Vector2( 1218.77, 1154.9 )
+scale = Vector2( 0.331139, 0.647363 )
+shape = SubResource( 7 )
+
+[node name="floor3" type="KinematicBody2D" parent="."]
+position = Vector2( -6008.14, -1336.44 )
+scale = Vector2( 5.01996, 1.213 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="floor3"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1218.5, 1154.24 )
+scale = Vector2( 0.259234, 0.281124 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor3"]
+position = Vector2( 1218.77, 1154.9 )
+scale = Vector2( 0.331139, 0.647363 )
+shape = SubResource( 7 )
+
+[node name="floor8" type="KinematicBody2D" parent="."]
+position = Vector2( -5357.55, -922.463 )
+scale = Vector2( 5.01996, 1.213 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="floor8"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1218.5, 1154.24 )
+scale = Vector2( 0.259234, 0.281124 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor8"]
+position = Vector2( 1218.77, 1154.9 )
+scale = Vector2( 0.331139, 0.647363 )
+shape = SubResource( 7 )
+
+[node name="floor9" type="KinematicBody2D" parent="."]
+position = Vector2( -5710.64, -1119.86 )
+scale = Vector2( 5.01996, 1.213 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="floor9"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1218.5, 1154.24 )
+scale = Vector2( 0.259234, 0.281124 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor9"]
+position = Vector2( 1218.77, 1154.9 )
+scale = Vector2( 0.331139, 0.647363 )
+shape = SubResource( 7 )
+
+[node name="floor12" type="KinematicBody2D" parent="."]
+position = Vector2( -5137.49, -961.262 )
+scale = Vector2( 5.01996, 1.213 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="floor12"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1218.5, 1154.24 )
+scale = Vector2( 0.259234, 0.281124 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor12"]
+position = Vector2( 1218.77, 1154.9 )
+scale = Vector2( 0.331139, 0.647363 )
+shape = SubResource( 7 )
+
+[node name="floor10" type="KinematicBody2D" parent="."]
+position = Vector2( -5544.04, -1395.94 )
+scale = Vector2( 5.01996, 1.213 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="floor10"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1218.5, 1154.24 )
+scale = Vector2( 0.259234, 0.281124 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor10"]
+position = Vector2( 1218.77, 1154.9 )
+scale = Vector2( 0.331139, 0.647363 )
+shape = SubResource( 7 )
+
+[node name="floor4" type="KinematicBody2D" parent="."]
+position = Vector2( -5425.77, -1270.8 )
+rotation = -3.15032
+scale = Vector2( 5.19536, 1.16196 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="floor4"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1218.86, 1157.41 )
+scale = Vector2( 0.259234, 0.281124 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor4"]
+position = Vector2( 1218.77, 1154.9 )
+scale = Vector2( 0.331139, 0.647363 )
+shape = SubResource( 7 )
+
+[node name="floor5" type="KinematicBody2D" parent="."]
+position = Vector2( -6103.92, -933.496 )
+rotation = -0.00176995
+scale = Vector2( 5.06752, 1.12107 )
+
+[node name="Sprite" type="Sprite" parent="floor5"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1220.88, 1114.93 )
+scale = Vector2( 0.259234, 0.281124 )
+texture = ExtResource( 1 )
+
+[node name="floor6" type="KinematicBody2D" parent="."]
+position = Vector2( -6103.92, -933.496 )
+rotation = -0.00176995
+scale = Vector2( 5.06752, 1.12107 )
+
+[node name="Sprite" type="Sprite" parent="floor6"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1379.14, 1156.44 )
+scale = Vector2( 0.259234, 0.281124 )
+texture = ExtResource( 1 )
+
+[node name="floor7" type="KinematicBody2D" parent="."]
+position = Vector2( -6103.92, -933.496 )
+rotation = -0.00176995
+scale = Vector2( 5.06752, 1.12107 )
+
+[node name="Sprite" type="Sprite" parent="floor7"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 6 )
+position = Vector2( 1273.56, 933.745 )
+scale = Vector2( 0.259234, 0.24948 )
+texture = ExtResource( 1 )
+[connection signal="body_entered" from="PREDATOR/Area2D" to="PREDATOR" method="_on_Area2D_body_entered"]
